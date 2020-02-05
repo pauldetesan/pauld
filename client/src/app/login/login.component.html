@@ -1,0 +1,41 @@
+<div class="alert alert-danger alert-dismissible fade show custom-alert" *ngIf="hasError">
+    <button type="button" class="close" data-dismiss="alert" (click)="hasError = false">&times;</button>
+    {{errMessage}}
+</div>
+<div class="alert alert-success alert-dismissible fade show custom-alert" *ngIf="isSuccess">
+    <button type="button" class="close" data-dismiss="alert" (click)="isSuccess = false">&times;</button>
+    {{successMessage}}
+</div>
+
+<div class="content text-center" role="main">
+    <form class="login-form" [formGroup]="loginForm" (ngSubmit)="tryLogin()">
+        <img class="mb-4" src="/assets/img/angLogo.png" alt="" width="72" height="72">
+        <h1 class="h3 mb-3 font-weight-normal">
+            Sign in
+        </h1>
+        <input type="email" formControlName="email" class="form-control" required placeholder="Email" id="inpEmail">
+        <div *ngIf="loginForm.controls.email.errors && (submitted || loginForm.controls.email.touched)" class="error-message">
+            Email is required
+        </div>
+        <input type="password" formControlName="password" class="form-control" required placeholder="Password" id="inpPw">
+        <div *ngIf="loginForm.controls.password.errors && (submitted || loginForm.controls.password.touched)" class="error-message">
+            Password is required
+        </div>
+        <div class="row form-check">
+            <div class="col-6">
+                <label class="form-check-label">
+                    <input type="checkbox" class="form-check-input" value="">Remember me
+                </label>
+            </div>
+            <div class="col-6">
+                <button class="btn btn-sm btn-light btn-forgot" type="button" (click)="popModal()">Forgot
+                    password?</button>
+            </div>
+        </div>
+        <button class="btn btn-primary btn-lg btn-block" type="submit">Sign In</button>
+        <button class="btn btn-sm btn-light btn-block btn-create" type="button" (click)="signUp()">Don't have an
+            account? Sign up</button>       
+    </form>
+
+    
+</div>
